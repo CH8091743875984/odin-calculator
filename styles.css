@@ -14,6 +14,11 @@ button {
     width: 224px;
     background-color: grey;
     margin: 4px;
+    font-size: 18pt;
+    font-family: monospace, sans-serif;
+    align-items: center;
+    justify-content: right;
+    display: flex;
 }
 
 #clear {
@@ -27,5 +32,6 @@ button {
 #calculatorBody {
     padding: 10px;
     border: solid 3px green;
+    display: inline-block;
 
 }
