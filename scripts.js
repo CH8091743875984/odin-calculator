@@ -18,6 +18,10 @@ function divide(x,y) {
 function operate(x,operator,y) {
     return operator(x,y)
 }
+function getOperation(textInput) {
+    let operationObject = {"add":add, "subtract":subtract, "multiply":multiply, "divide": divide}
+    return operationObject[textInput]
+}
 
 function keyUpdateDisplay(value) {
     if (value !==".") {
@@ -44,6 +48,10 @@ function setUpdateDisplay(inputValue) {
         displayValue = inputValue
     }
     
+    if (displayValue === Infinity) {
+        displayValue = 'No Divide 0!'
+    }
+
     document.querySelector('#display').textContent = displayValue
 }
 
@@ -131,10 +139,6 @@ operatorBtns.forEach( function(btn) {
 )
 })
 
-function getOperation(textInput) {
-    let operationObject = {"add":add, "subtract":subtract, "multiply":multiply, "divide": divide}
-    return operationObject[textInput]
-}
 
 
 //when you click a number button, update display and store in memory A
