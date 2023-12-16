@@ -19,7 +19,7 @@ function operate(x,operator,y) {
     return operator(x,y)
 }
 
-function updateDisplay(value) {
+function keyUpdateDisplay(value) {
     if (value !==".") {
         if (document.querySelector('#display').textContent === '0') {
             document.querySelector('#display').textContent = value            
@@ -28,6 +28,23 @@ function updateDisplay(value) {
         }
     } else if (!document.querySelector('#display').textContent.includes(".") && value ===".") 
     document.querySelector('#display').textContent += value
+}
+
+function setUpdateDisplay(inputValue) {
+    let maxCharacters = 14
+    let displayValue
+    
+    if (inputValue.toString().length > maxCharacters) {
+        floorValue = Math.floor(inputValue).toString()
+        roundLength = Math.max(0, maxCharacters - floorValue.length)
+
+        displayValue = inputValue.toFixed(roundLength)
+
+    } else {
+        displayValue = inputValue
+    }
+    
+    document.querySelector('#display').textContent = displayValue
 }
 
 document.querySelector('#clear').addEventListener('click', () => {
@@ -51,11 +68,11 @@ let numberBtns = document.querySelectorAll('.numberBtn')
 numberBtns.forEach( function(btn) {
     btn.addEventListener('click', () => {
         if (!clearDisplayNextInput) {
-            updateDisplay(btn.textContent)
+            keyUpdateDisplay(btn.textContent)
         } else {
             document.querySelector('#display').textContent = 0
             clearDisplayNextInput = false
-            updateDisplay(btn.textContent)
+            keyUpdateDisplay(btn.textContent)
         }
 
     })
@@ -70,7 +87,7 @@ document.querySelector('#equals').addEventListener('click', () => {
         inputY = parseFloat(document.querySelector('#display').textContent)
         console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
 
-        document.querySelector('#display').textContent = operate(inputX, currentOperation, inputY)
+        setUpdateDisplay(operate(inputX, currentOperation, inputY))
 
         console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
         inputX = undefined
@@ -78,7 +95,7 @@ document.querySelector('#equals').addEventListener('click', () => {
     } else if (inputX===undefined) {
         inputX = parseFloat(document.querySelector('#display').textContent)
         //document.querySelector('#display').textContent = undefined
-        document.querySelector('#display').textContent = operate(inputX, currentOperation, inputY)
+        setUpdateDisplay(operate(inputX, currentOperation, inputY))
         inputX = undefined
     }
 })
@@ -101,7 +118,7 @@ operatorBtns.forEach( function(btn) {
         } else  {
             // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
             inputY = parseFloat(document.querySelector('#display').textContent)
-            document.querySelector('#display').textContent = operate(inputX, currentOperation, inputY)
+            setUpdateDisplay(operate(inputX, currentOperation, inputY))
             // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
             currentOperation = getOperation(btn.id)
             clearDisplayNextInput = true
