@@ -22,6 +22,11 @@ function getOperation(textInput) {
     let operationObject = {"add":add, "subtract":subtract, "multiply":multiply, "divide": divide}
     return operationObject[textInput]
 }
+function changeSign() {
+    document.querySelector('#display').textContent = (parseFloat(document.querySelector('#display').textContent)*(-1)).toString()
+    
+}
+
 
 function keyUpdateDisplay(value) {
     if (value !==".") {
@@ -55,6 +60,8 @@ function setUpdateDisplay(inputValue) {
     document.querySelector('#display').textContent = displayValue
 }
 
+document.querySelector('#positiveNegative').addEventListener('click', changeSign)
+
 document.querySelector('#clear').addEventListener('click', () => {
     currentOperation = undefined
     inputY = undefined
@@ -86,10 +93,7 @@ numberBtns.forEach( function(btn) {
     })
 })
 
-//generalize this if possible to a function or assign it with foreach.
-//test that this thing will still add the Y input like a calc would if you keep hitting equals(or is it only with equals?)
-//do nothing if you hit the same operation again, else change the operation
-//for clarity, maybe have function for updating current operation
+
 document.querySelector('#equals').addEventListener('click', () => {
     if (inputX!==undefined) {
         inputY = parseFloat(document.querySelector('#display').textContent)
@@ -107,6 +111,8 @@ document.querySelector('#equals').addEventListener('click', () => {
         inputX = undefined
     }
 })
+
+
 
 
 //switching operators - should be able to click an operator again after ??? input and have it change operator, not eval
