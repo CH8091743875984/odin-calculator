@@ -13,13 +13,18 @@ button {
     border-style: solid;    
 }
 
+button:hover {
+    background-color: white;
+    color: #1E5631;
+}
+
 .numberBtn {
     background-color: lightgray;
     color: #1E5631;
     font-size: 24pt;
 }
 
-#delete, #positiveNegative, #blankOne {
+.anciliary {
     background-color: #a4de02;
     color: #1E5631;
     font-size: 14pt;
@@ -38,13 +43,13 @@ button {
     border-radius: 6px;
 }
 
-#clear {
+.clear {
     background-color: rgb(255, 66, 66);
     font-size: 18pt;
     color: #1e5631;
 }
 
-#add, #subtract, #multiply, #divide, #equals {
+.operatorBtn {
     background-color:  #1E5631;
     color: #ACDF87;
     font-size: 24pt;
@@ -58,5 +63,7 @@ button {
     background-color: #76ba1b;
     border-radius: 12px;
 }
+
+
 
 /* color scheme help: https://www.schemecolor.com/wp-content/themes/colorsite/include/cc6.php?color0=1E5631&color1=A4DE02&color2=76BA1B&color3=4C9A2A&color4=ACDF87&color5=68BB59&pn=Shades%20of%20Green*/
