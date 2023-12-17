@@ -10,7 +10,7 @@ button {
     font-family: Arial, sans-serif;
     text-emphasis: bold;
     border-color: white;
-    border-style: solid;
+    border-style: solid;    
 }
 
 .numberBtn {
@@ -24,7 +24,6 @@ button {
     color: #1E5631;
     font-size: 14pt;
 }
-
 
 #display {
     height: 50px;
@@ -58,5 +57,6 @@ button {
     display: inline-block;
     background-color: #76ba1b;
     border-radius: 12px;
-
 }
+
+/* color scheme help: https://www.schemecolor.com/wp-content/themes/colorsite/include/cc6.php?color0=1E5631&color1=A4DE02&color2=76BA1B&color3=4C9A2A&color4=ACDF87&color5=68BB59&pn=Shades%20of%20Green*/
