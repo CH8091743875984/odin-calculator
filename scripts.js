@@ -2,6 +2,7 @@ let inputX
 let inputY 
 let currentOperation
 let clearDisplayNextInput = false
+let lastButtonPressed
 
 function add(x,y) {
     return x+y
@@ -97,6 +98,7 @@ let numberBtns = document.querySelectorAll('.numberBtn')
 
 numberBtns.forEach( function(btn) {
     btn.addEventListener('click', () => {
+        lastButtonPressed = btn.id
         if (!clearDisplayNextInput) {
             keyUpdateDisplay(btn.textContent)
         } else {
@@ -137,6 +139,7 @@ document.querySelector('#equals').addEventListener('click', () => {
 
 
 //switching operators - should be able to click an operator again after ??? input and have it change operator, not eval
+//equals sign when not all inputs have been made
 
 let operatorBtns = document.querySelectorAll('.operatorBtn')
 
@@ -146,7 +149,10 @@ operatorBtns.forEach( function(btn) {
         //     document.querySelector('#display').textContent = 0
         //     clearDisplayNextInput=false
         // }
-        if (inputX===undefined) {
+        const operatorArray =  ['add', 'subtract', 'multiply', 'divide']
+        if (operatorArray.includes(lastButtonPressed)) {
+            currentOperation = getOperation(btn.id)
+        } else if (inputX===undefined) {
             // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
             inputX = parseFloat(document.querySelector('#display').textContent)
             clearDisplayNextInput = true
@@ -164,7 +170,8 @@ operatorBtns.forEach( function(btn) {
             inputX = parseFloat(document.querySelector('#display').textContent)
             // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation) 
         
-    }
+        }
+        lastButtonPressed = btn.id
 }
 )
 })
