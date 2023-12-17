@@ -117,21 +117,25 @@ document.querySelector('#equals').addEventListener('click', () => {
     //     clearDisplayNextInput=false
 
     // }
-    
-    if (inputX!==undefined) {
-        inputY = parseFloat(document.querySelector('#display').textContent)
-        console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
+    // }
+    const operatorArray =  ['add', 'subtract', 'multiply', 'divide']
+    if (!operatorArray.includes(lastButtonPressed)) {
+      
+        if (inputX!==undefined) {
+            inputY = parseFloat(document.querySelector('#display').textContent)
+            console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
 
-        setUpdateDisplay(operate(inputX, currentOperation, inputY))
+            setUpdateDisplay(operate(inputX, currentOperation, inputY))
 
-        console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-        inputX = undefined
-        clearDisplayNextInput = true
-    } else if (inputX===undefined) {
-        inputX = parseFloat(document.querySelector('#display').textContent)
-        //document.querySelector('#display').textContent = undefined
-        setUpdateDisplay(operate(inputX, currentOperation, inputY))
-        inputX = undefined
+            console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
+            inputX = undefined
+            clearDisplayNextInput = true
+        } else if (inputX===undefined) {
+            inputX = parseFloat(document.querySelector('#display').textContent)
+            //document.querySelector('#display').textContent = undefined
+            setUpdateDisplay(operate(inputX, currentOperation, inputY))
+            inputX = undefined
+        }
     }
 })
 
