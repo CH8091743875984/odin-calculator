@@ -57,8 +57,10 @@ function setUpdateDisplay(inputValue) {
         roundLength = Math.max(0, maxCharacters - floorValue.length)
 
         displayValue = inputValue.toFixed(roundLength)
-    } else if (displayValue === Infinity) {
+    } else if (inputValue === Infinity) {
         displayValue = 'No Divide 0!'
+        clearGlobalVariables()
+        clearDisplayNextInput = true
     } else {
         displayValue = inputValue
     }
