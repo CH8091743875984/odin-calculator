@@ -29,8 +29,7 @@ function changeSign() {
 function clearGlobalVariables() {
     currentOperation = undefined
     inputY = undefined
-    inputX = undefined
-    
+    inputX = undefined 
 }
 
 function displayLength() {
@@ -38,7 +37,6 @@ function displayLength() {
     let currentDisplay = document.querySelector('#display').textContent
     return currentDisplay.replace('-','').length
 }
-
 
 function keyUpdateDisplay(value) {
     if (displayLength() <14) {
@@ -85,7 +83,6 @@ function clearFunction () {
     document.querySelector('#display').textContent = 0
 }
 
-
 document.querySelector('#clear').addEventListener('click', () => {
     clearFunction()
     })
@@ -125,7 +122,6 @@ numberBtns.forEach( function(btn) {
 function equalsFunction() {
     const operatorArray =  ['add', 'subtract', 'multiply', 'divide']
     if (!operatorArray.includes(lastButtonPressed)) {
-      
         if (inputX!==undefined) {
             inputY = parseFloat(document.querySelector('#display').textContent)
             console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
@@ -137,7 +133,6 @@ function equalsFunction() {
             clearDisplayNextInput = true
         } else if (inputX===undefined) {
             inputX = parseFloat(document.querySelector('#display').textContent)
-            //document.querySelector('#display').textContent = undefined
             setUpdateDisplay(operate(inputX, currentOperation, inputY))
             inputX = undefined
         }
@@ -146,7 +141,6 @@ function equalsFunction() {
 
 document.querySelector('#equals').addEventListener('click', () => {
     equalsFunction()
-   
 })
 
 function operatorFunction(operatorName) {
@@ -154,23 +148,16 @@ function operatorFunction(operatorName) {
     if (operatorArray.includes(lastButtonPressed)) {
         currentOperation = getOperation(operatorName)
     } else if (inputX===undefined) {
-        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
         inputX = parseFloat(document.querySelector('#display').textContent)
         clearDisplayNextInput = true
-        // console.log('"'+btn.id+'"')
         currentOperation = getOperation(operatorName)
-        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
     } else  {
-        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
         inputY = parseFloat(document.querySelector('#display').textContent)
         setUpdateDisplay(operate(inputX, currentOperation, inputY))
-        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
         currentOperation = getOperation(operatorName)
         clearDisplayNextInput = true
         inputY = undefined
         inputX = parseFloat(document.querySelector('#display').textContent)
-        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation) 
-    
     }
     lastButtonPressed = operatorName
 }
@@ -181,7 +168,6 @@ operatorBtns.forEach( function(btn) {
     btn.addEventListener('click', () => {
         operatorFunction(btn.id)})
 })
-
 
 document.addEventListener('keydown', (event) => {
     if (event.key === '1') {numberFunction(1)}
@@ -206,3 +192,4 @@ document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {clearFunction()}
    }
 )
+
