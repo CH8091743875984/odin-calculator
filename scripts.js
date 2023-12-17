@@ -80,28 +80,37 @@ function setUpdateDisplay(inputValue) {
 
 document.querySelector('#positiveNegative').addEventListener('click', changeSign)
 
-document.querySelector('#clear').addEventListener('click', () => {
+function clearFunction () {
     clearGlobalVariables()
     document.querySelector('#display').textContent = 0
+}
+
+
+document.querySelector('#clear').addEventListener('click', () => {
+    clearFunction()
     })
 
-document.querySelector('#delete').addEventListener('click', () => {
+function deleteFunction () {
     let currentDisplay = document.querySelector('#display').textContent
     if (currentDisplay !==0 &&  currentDisplay.length > 1) {
         document.querySelector('#display').textContent = currentDisplay.slice(0,-1)
     } else if (currentDisplay.length=1) {
         document.querySelector('#display').textContent = 0
     }
+}
+
+document.querySelector('#delete').addEventListener('click', () => {
+    deleteFunction()
 })
 
-function numberFunction(numberName, numberText) {
+function numberFunction(numberName) {
     lastButtonPressed = numberName
         if (!clearDisplayNextInput) {
-            keyUpdateDisplay(numberText)
+            keyUpdateDisplay(numberName)
         } else {
             document.querySelector('#display').textContent = 0
             clearDisplayNextInput = false
-            keyUpdateDisplay(numberText)
+            keyUpdateDisplay(numberName)
         }
 }
 
@@ -109,7 +118,7 @@ let numberBtns = document.querySelectorAll('.numberBtn')
 
 numberBtns.forEach( function(btn) {
     btn.addEventListener('click', () => {
-        numberFunction(btn.id, btn.textContent)
+        numberFunction(btn.id)
     })
 })
 
@@ -172,8 +181,28 @@ operatorBtns.forEach( function(btn) {
     btn.addEventListener('click', () => {
         operatorFunction(btn.id)})
 })
-        // if (clearDisplayNextInput) {
-        //     document.querySelector('#display').textContent = 0
-        //     clearDisplayNextInput=false
-        // }
-       
+
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === '1') {numberFunction(1)}
+    if (event.key === '2') {numberFunction(2)}
+    if (event.key === '3') {numberFunction(3)}
+    if (event.key === '4') {numberFunction(4)}
+    if (event.key === '5') {numberFunction(5)}
+    if (event.key === '6') {numberFunction(6)}
+    if (event.key === '7') {numberFunction(7)}
+    if (event.key === '8') {numberFunction(8)}
+    if (event.key === '9') {numberFunction(9)}
+    if (event.key === '0') {numberFunction(0)}
+    if (event.key === '.') {numberFunction('.')}
+
+    if (event.key === '+') {operatorFunction('add')}
+    if (event.key === '-') {operatorFunction('subtract')}
+    if (event.key === '*') {operatorFunction('multiply')}
+    if (event.key === '/') {event.preventDefault(); operatorFunction('divide')}
+
+    if (event.key === 'Backspace') {deleteFunction()}
+    if (event.key === 'Enter') {equalsFunction()}
+    if (event.key === 'Escape') {clearFunction()}
+   }
+)
