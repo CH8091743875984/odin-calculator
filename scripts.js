@@ -139,38 +139,40 @@ document.querySelector('#equals').addEventListener('click', () => {
     }
 })
 
+function operatorFunction(operatorName) {
+    const operatorArray =  ['add', 'subtract', 'multiply', 'divide']
+    if (operatorArray.includes(lastButtonPressed)) {
+        currentOperation = getOperation(operatorName)
+    } else if (inputX===undefined) {
+        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
+        inputX = parseFloat(document.querySelector('#display').textContent)
+        clearDisplayNextInput = true
+        // console.log('"'+btn.id+'"')
+        currentOperation = getOperation(operatorName)
+        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
+    } else  {
+        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
+        inputY = parseFloat(document.querySelector('#display').textContent)
+        setUpdateDisplay(operate(inputX, currentOperation, inputY))
+        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
+        currentOperation = getOperation(operatorName)
+        clearDisplayNextInput = true
+        inputY = undefined
+        inputX = parseFloat(document.querySelector('#display').textContent)
+        // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation) 
+    
+    }
+    lastButtonPressed = operatorName
+}
+
 let operatorBtns = document.querySelectorAll('.operatorBtn')
 
 operatorBtns.forEach( function(btn) {
     btn.addEventListener('click', () => {
+        operatorFunction(btn.id)})
+})
         // if (clearDisplayNextInput) {
         //     document.querySelector('#display').textContent = 0
         //     clearDisplayNextInput=false
         // }
-        const operatorArray =  ['add', 'subtract', 'multiply', 'divide']
-        if (operatorArray.includes(lastButtonPressed)) {
-            currentOperation = getOperation(btn.id)
-        } else if (inputX===undefined) {
-            // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-            inputX = parseFloat(document.querySelector('#display').textContent)
-            clearDisplayNextInput = true
-            // console.log('"'+btn.id+'"')
-            currentOperation = getOperation(btn.id)
-            // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-        } else  {
-            // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-            inputY = parseFloat(document.querySelector('#display').textContent)
-            setUpdateDisplay(operate(inputX, currentOperation, inputY))
-            // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-            currentOperation = getOperation(btn.id)
-            clearDisplayNextInput = true
-            inputY = undefined
-            inputX = parseFloat(document.querySelector('#display').textContent)
-            // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation) 
-        
-        }
-        lastButtonPressed = btn.id
-}
-)
-})
-
+       
