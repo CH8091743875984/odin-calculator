@@ -24,6 +24,11 @@ function getOperation(textInput) {
 }
 function changeSign() {
     document.querySelector('#display').textContent = (parseFloat(document.querySelector('#display').textContent)*(-1)).toString()
+}
+function clearGlobalVariables() {
+    currentOperation = undefined
+    inputY = undefined
+    inputX = undefined
     
 }
 
@@ -42,19 +47,20 @@ function keyUpdateDisplay(value) {
 function setUpdateDisplay(inputValue) {
     let maxCharacters = 14
     let displayValue
-    
-    if (inputValue.toString().length > maxCharacters) {
+
+    if (inputValue.toString().length >=14) {
+        displayValue = 'OVERFLOW'
+        clearGlobalVariables()
+        clearDisplayNextInput = true
+    } else if (inputValue.toString().length > maxCharacters) {
         floorValue = Math.floor(inputValue).toString()
         roundLength = Math.max(0, maxCharacters - floorValue.length)
 
         displayValue = inputValue.toFixed(roundLength)
-
+    } else if (displayValue === Infinity) {
+        displayValue = 'No Divide 0!'
     } else {
         displayValue = inputValue
-    }
-    
-    if (displayValue === Infinity) {
-        displayValue = 'No Divide 0!'
     }
 
     document.querySelector('#display').textContent = displayValue
@@ -62,10 +68,9 @@ function setUpdateDisplay(inputValue) {
 
 document.querySelector('#positiveNegative').addEventListener('click', changeSign)
 
+
 document.querySelector('#clear').addEventListener('click', () => {
-    currentOperation = undefined
-    inputY = undefined
-    inputX = undefined
+    clearGlobalVariables()
     document.querySelector('#display').textContent = 0
     })
 
@@ -95,6 +100,12 @@ numberBtns.forEach( function(btn) {
 
 
 document.querySelector('#equals').addEventListener('click', () => {
+    // if (clearDisplayNextInput) {
+    //     document.querySelector('#display').textContent = 0
+    //     clearDisplayNextInput=false
+
+    // }
+    
     if (inputX!==undefined) {
         inputY = parseFloat(document.querySelector('#display').textContent)
         console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
@@ -121,7 +132,10 @@ let operatorBtns = document.querySelectorAll('.operatorBtn')
 
 operatorBtns.forEach( function(btn) {
     btn.addEventListener('click', () => {
-        
+        // if (clearDisplayNextInput) {
+        //     document.querySelector('#display').textContent = 0
+        //     clearDisplayNextInput=false
+        // }
         if (inputX===undefined) {
             // console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
             inputX = parseFloat(document.querySelector('#display').textContent)
