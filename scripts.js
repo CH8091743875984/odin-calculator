@@ -94,30 +94,26 @@ document.querySelector('#delete').addEventListener('click', () => {
     }
 })
 
+function numberFunction(numberName, numberText) {
+    lastButtonPressed = numberName
+        if (!clearDisplayNextInput) {
+            keyUpdateDisplay(numberText)
+        } else {
+            document.querySelector('#display').textContent = 0
+            clearDisplayNextInput = false
+            keyUpdateDisplay(numberText)
+        }
+}
+
 let numberBtns = document.querySelectorAll('.numberBtn') 
 
 numberBtns.forEach( function(btn) {
     btn.addEventListener('click', () => {
-        lastButtonPressed = btn.id
-        if (!clearDisplayNextInput) {
-            keyUpdateDisplay(btn.textContent)
-        } else {
-            document.querySelector('#display').textContent = 0
-            clearDisplayNextInput = false
-            keyUpdateDisplay(btn.textContent)
-        }
-
+        numberFunction(btn.id, btn.textContent)
     })
 })
 
-
-document.querySelector('#equals').addEventListener('click', () => {
-    // if (clearDisplayNextInput) {
-    //     document.querySelector('#display').textContent = 0
-    //     clearDisplayNextInput=false
-
-    // }
-    // }
+function equalsFunction() {
     const operatorArray =  ['add', 'subtract', 'multiply', 'divide']
     if (!operatorArray.includes(lastButtonPressed)) {
       
@@ -137,6 +133,11 @@ document.querySelector('#equals').addEventListener('click', () => {
             inputX = undefined
         }
     }
+}
+
+document.querySelector('#equals').addEventListener('click', () => {
+    equalsFunction()
+   
 })
 
 function operatorFunction(operatorName) {
