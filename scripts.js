@@ -139,12 +139,6 @@ document.querySelector('#equals').addEventListener('click', () => {
     }
 })
 
-
-
-
-//switching operators - should be able to click an operator again after ??? input and have it change operator, not eval
-//equals sign when not all inputs have been made
-
 let operatorBtns = document.querySelectorAll('.operatorBtn')
 
 operatorBtns.forEach( function(btn) {
@@ -180,37 +174,3 @@ operatorBtns.forEach( function(btn) {
 )
 })
 
-
-
-//when you click a number button, update display and store in memory A
-//if you click another number button, append to memory A; if a period, add it but don't allow more. let delete key remove digits
-//if you click an operator button, update that to the active operation - if an operator button is clicked again, set THAT to the active operation (overwrite)
-//if you click a number button, start updating memory B
-//if you click equals, call OPERATE with memA, mem B, and the active operation. update display, update memory A, clear memory B, clear active operation
-//if you click another operator button, call OPERATE, update memory A, clear memory B, set active operation
-//clear first time clears current input; clear again clears all memory (a, b, operation)
-
-
-// document.querySelector('#divide').addEventListener('click', () => display = 0)
-// document.querySelector('#multiply').addEventListener('click', () => display = 0)
-// document.querySelector('#subtract').addEventListener('click', () => display = 0)
-// document.querySelector('#add').addEventListener('click', () => {
-//     if (inputX===undefined) {
-//         console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-//         inputX = parseFloat(document.querySelector('#display').textContent)
-//         document.querySelector('#display').textContent = 0
-//         console.log(this)
-//         currentOperation = add
-//         console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-//     } else {
-//         console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-//         inputY = parseFloat(document.querySelector('#display').textContent)
-//         document.querySelector('#display').textContent = operate(inputX, currentOperation, inputY)
-//         console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-//         currentOperation = undefined
-//         inputY = undefined
-//         inputX = undefined
-//         console.log('Disp: '+document.querySelector('#display').textContent+' X: '+inputX+' Y: '+inputY+' Op: '+currentOperation)
-
-//     }
-// })

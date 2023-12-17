@@ -6,8 +6,25 @@ button {
     width: 50px;
     height: 50px;
     margin: 4px;
-    background-color: rgb(106,255,77)
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    text-emphasis: bold;
+    border-color: white;
+    border-style: solid;
 }
+
+.numberBtn {
+    background-color: lightgray;
+    color: #1E5631;
+    font-size: 24pt;
+}
+
+#delete, #positiveNegative, #blankOne {
+    background-color: #a4de02;
+    color: #1E5631;
+    font-size: 14pt;
+}
+
 
 #display {
     height: 50px;
@@ -19,19 +36,27 @@ button {
     align-items: center;
     justify-content: right;
     display: flex;
+    border-radius: 6px;
 }
 
 #clear {
-    background-color: rgb(255,51,51);
+    background-color: rgb(255, 66, 66);
+    font-size: 18pt;
+    color: #1e5631;
 }
 
-#add, #subtract, #multiply, #divide {
-    background-color: white;
+#add, #subtract, #multiply, #divide, #equals {
+    background-color:  #1E5631;
+    color: #ACDF87;
+    font-size: 24pt;
+
 }
 
 #calculatorBody {
     padding: 10px;
-    border: solid 3px green;
+    border: solid 3px #1e5631;
     display: inline-block;
+    background-color: #76ba1b;
+    border-radius: 12px;
 
 }
