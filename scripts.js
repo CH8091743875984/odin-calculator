@@ -32,31 +32,40 @@ function clearGlobalVariables() {
     
 }
 
+function displayLength() {
+    //will have periods count as a space
+    let currentDisplay = document.querySelector('#display').textContent
+    return currentDisplay.replace('-','').length
+}
+
 
 function keyUpdateDisplay(value) {
-    if (value !==".") {
-        if (document.querySelector('#display').textContent === '0') {
-            document.querySelector('#display').textContent = value            
-        } else {
+    if (displayLength() <14) {
+    
+        if (value !==".") {
+            if (document.querySelector('#display').textContent === '0') {
+                document.querySelector('#display').textContent = value            
+            } else {
+            document.querySelector('#display').textContent += value
+            }
+        } else if (!document.querySelector('#display').textContent.includes(".") && value ===".") 
         document.querySelector('#display').textContent += value
-        }
-    } else if (!document.querySelector('#display').textContent.includes(".") && value ===".") 
-    document.querySelector('#display').textContent += value
+    }
 }
 
 function setUpdateDisplay(inputValue) {
     let maxCharacters = 14
     let displayValue
 
-    if (inputValue.toString().length >=14) {
+    let floorValue = Math.floor(inputValue).toString()
+
+    if (floorValue.toString().replace('-','').length >= maxCharacters) {
         displayValue = 'OVERFLOW'
         clearGlobalVariables()
         clearDisplayNextInput = true
-    } else if (inputValue.toString().length > maxCharacters) {
-        floorValue = Math.floor(inputValue).toString()
+    } else if (floorValue.toString().replace('-','').length < maxCharacters) {
         roundLength = Math.max(0, maxCharacters - floorValue.length)
-
-        displayValue = inputValue.toFixed(roundLength)
+        displayValue = parseFloat(inputValue.toFixed(roundLength))
     } else if (inputValue === Infinity) {
         displayValue = 'No Divide 0!'
         clearGlobalVariables()
@@ -69,7 +78,6 @@ function setUpdateDisplay(inputValue) {
 }
 
 document.querySelector('#positiveNegative').addEventListener('click', changeSign)
-
 
 document.querySelector('#clear').addEventListener('click', () => {
     clearGlobalVariables()
